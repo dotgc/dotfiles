@@ -1,0 +1,51 @@
+[user]
+	name = Gaurav Chauhan
+	email = iitb.gaurav@gmail.com
+[core]
+	pager = less -r
+[alias]
+	di = diff
+	diff = diff --word-diff
+	dc = diff --cached
+	st = status -s
+	pullr = pull --rebase
+	co = checkout
+	cp = cherry-pick
+	ci = commit
+	cl = clone
+	br = branch
+	sl = stash list
+	sa = stash apply
+	ss = stash save
+	alias = "!git config -l | grep alias | cut -c 7-"
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	branch-name = "!git rev-parse --abbrev-ref HEAD"
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	le = log --oneline --decorate
+	filelog = log -u
+	fl = log -u
+	dl = "!git ll -1"
+	dlc = diff --cached HEAD^
+	dr  = "!f() { git diff "$1"^.."$1"; }; f"
+	lc  = "!f() { git ll "$1"^.."$1"; }; f"
+	diffr  = "!f() { git diff "$1"^.."$1"; }; f"
+	f = "!git ls-files | grep -i"
+	grep = grep -Ii
+	gr = grep -Ii
+	assume = update-index --assume-unchanged
+	unassume = update-index --no-assume-unchanged
+	assumed = "!git ls-files -v | grep ^h | cut -c 3-"
+	unassumeall = "!git assumed | xargs git update-index --no-assume-unchanged"
+	assumeall = "!git st -s | awk {'print $2'} | xargs git assume"
+	lasttag = describe --tags --abbrev=0
+	lt = describe --tags --abbrev=0
+	ours = "!f() { git co --ours $@ && git add $@; }; f"
+     	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
+	logtree = log --graph --oneline --decorate --all
+[push]
+	default = simple

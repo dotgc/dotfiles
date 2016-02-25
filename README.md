@@ -1,2 +1,1 @@
-# mydotfiles
-My Personal Dotfiles
+A repo of personal .dotfiles
