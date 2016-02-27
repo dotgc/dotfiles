@@ -12,6 +12,8 @@ export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64
 export AWS_CONFIG_FILE=$HOME/.s3cfg
 
 export GOPATH=$ROOT/go
+
+export GREP_OPTIONS='-inR --color=always'
 export GOROOT=/usr/lib/go
 
 # easy conflict resolver
