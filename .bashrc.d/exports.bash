@@ -1,5 +1,5 @@
 export PROMPT_COMMAND='
-if [ $TERM = "xterm" ]; then echo -ne "\033k${USER}@${HOSTNAME}\033\\"; fi;
+if [ $TERM = "screen ]; then echo -ne "\033k${USER}@${HOSTNAME}\033\\"; fi;
 '
 
 # User specific aliases and functions
@@ -13,7 +13,6 @@ export AWS_CONFIG_FILE=$HOME/.s3cfg
 
 export GOPATH=$ROOT/go
 
-export GREP_OPTIONS='-inR --color=always'
 export GOROOT=/usr/lib/go
 
 # easy conflict resolver
