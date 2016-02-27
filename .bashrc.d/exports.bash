@@ -1,5 +1,5 @@
 export PROMPT_COMMAND='
-if [ $TERM = "screen ]; then echo -ne "\033k${USER}@${HOSTNAME}\033\\"; fi;
+if [ $TERM = "screen" ]; then echo -ne "\033k${USER}@${HOSTNAME}\033\\"; fi;
 '
 
 # User specific aliases and functions
