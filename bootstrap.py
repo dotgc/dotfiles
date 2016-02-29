@@ -1,13 +1,11 @@
 #!/usr/bin/python
 
 import os
-import sys
 import shutil
 import subprocess
 import argparse
 import logging
-import logging.handlers
-import warnings
+import util
 
 __author__ = 'Gaurav Chauhan(gauravschauhan1@gmail.com)'
 
@@ -18,46 +16,13 @@ HOME_DIR = os.path.expanduser('~')
 FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'dotfiles')
 EMACS_LIBS_DIR = os.path.join(HOME_DIR, '.emacs.d')
 
-LOG_FORMAT = '[%(filename)-22s:%(lineno)-4d] - %(asctime)s - %(levelname)s - %(message)s'
-
-def init_logging():
-    # Python warnings normally go to stderr.  Make them go through logging module instead.
-    def my_showwarning(message, category, filename, line, *args, **kwds):
-        import logging, warnings, traceback
-        logging.warning(warnings.formatwarning(message, category, filename, line) + '\n' + '\n'.join(traceback.format_stack()))
-
-    warnings.showwarning = my_showwarning
-
-def add_file_logging(logname, is_cron=False, shard_id=None, log_backup_count=None, formatter=None):
-    init_logging()
-    default_backup_count = 500
-    if shard_id is not None:
-        logname = '%s.%s' % (logname, shard_id)
-        default_backup_count = 20
-    if not log_backup_count:
-        log_backup_count = default_backup_count
-    handler = logging.handlers.RotatingFileHandler('%s.log' % logname, maxBytes=20 * 1024 * 1024, backupCount=log_backup_count) if is_cron else logging.FileHandler('%s.log' % logname)
-    if formatter is None:
-        formatter = logging.Formatter(LOG_FORMAT)
-    handler.setFormatter(formatter)
-    logging.getLogger().addHandler(handler)
-    logging.getLogger().setLevel(logging.INFO)
-    if is_cron:
-        if handler.shouldRollover(logging.makeLogRecord({'msg': ''})):
-            handler.doRollover()
-
-def add_stdout_logging():
-    init_logging()
-    handler = logging.StreamHandler(sys.stdout)
-    handler.setFormatter(logging.Formatter(LOG_FORMAT))
-    logging.getLogger().addHandler(handler)
-    logging.getLogger().setLevel(logging.INFO)
+DOTFILES_TO_IGNORE = frozenset(['.gitignore'])
 
 def setup_dotfiles():
     logging.info('Setting up dotfiles')
     for file_name in os.listdir(FS_DOTFILES_PATH):
         item_path = os.path.join(FS_DOTFILES_PATH, file_name)
-        if file_name.startswith('.'):
+        if file_name.startswith('.') and file_name not in DOTFILES_TO_IGNORE:
             # Must be a dotfile. Create symlink
             target_symlink_path = os.path.join(HOME_DIR, file_name)
             if os.path.exists(target_symlink_path):
@@ -94,9 +59,9 @@ def download_dotfiles():
 
 def main(args):
     if args.l:
-        add_stdout_logging()
+        util.add_stdout_logging()
     else:
-        add_file_logging()
+        util.add_file_logging()
     download_dotfiles()
     if args.d or not args.a:
         setup_dotfiles()
