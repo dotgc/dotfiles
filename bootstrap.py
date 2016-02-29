@@ -11,12 +11,13 @@ __author__ = 'Gaurav Chauhan(gauravschauhan1@gmail.com)'
 
 DOTFILES_REPO_HTTP_URL = 'https://github.com/ImGauravC/mydotfiles.git'
 SPACEMACS_REPO_URL = 'https://github.com/syl20bnr/spacemacs'
+GIT_COMPLETEION_URL = 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh'
 
 HOME_DIR = os.path.expanduser('~')
 FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'dotfiles')
 EMACS_LIBS_DIR = os.path.join(HOME_DIR, '.emacs.d')
 
-DOTFILES_TO_IGNORE = frozenset(['.gitignore'])
+DOTFILES_TO_IGNORE = frozenset(['.gitignore', '.git'])
 
 def setup_dotfiles():
     logging.info('Setting up dotfiles')
@@ -34,6 +35,12 @@ def setup_dotfiles():
                 os.symlink(item_path, target_symlink_path)
             except OSError as e:
                 logging.info('Found exception creating symlink: %r', e)
+            else:
+                if os.path.isfile(target_symlink_path):
+                    logging.info('Sourcing %s' % file_name)
+                    # Symlinking this way doesn't work. This is kind of times that make me want to learn bash scripting 
+                    # subprocess.call(['source', target_symlink_path])
+ 
     logging.info('Dotfiles setup')
 
 def setup_emacs():
@@ -55,7 +62,9 @@ def download_dotfiles():
     if os.path.exists(FS_DOTFILES_PATH):
         shutil.rmtree(FS_DOTFILES_PATH)
     subprocess.call(['git', 'clone', DOTFILES_REPO_HTTP_URL, FS_DOTFILES_PATH])
-    logging.info('Dotfiles downloaded')
+    logging.info('Dotfiles downloaded---Downloading git prompt now')
+    subprocess.call(['curl', GIT_COMPLETEION_URL, '-o', FS_DOTFILES_PATH + '/.git-prompt.sh'])
+    logging.info('git-prompt.sh downloaded')
 
 def main(args):
     if args.l:

@@ -33,6 +33,8 @@ if ((${BASH_VERSINFO[0]} >= 4)); then
     shopt -s globstar # Enable double-starring paths
 fi
 
+[ -r "$HOME/.git-prompt.sh" ] && . "$HOME/.git-prompt.sh"
+
 # Source a script if it is executable
 source_script() {
     [[ "${@:-1}" == "force" ]] && FORCE=1
