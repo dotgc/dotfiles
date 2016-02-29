@@ -1,0 +1,61 @@
+# First, include any system-wide bindings and variable
+# assignments from /etc/Inputrc
+$include /etc/Inputrc
+
+#
+# Set various bindings for emacs mode.
+
+set editing-mode emacs
+
+$if mode=emacs
+
+Meta-Control-h: backward-kill-word  Text after the function name is ignored
+
+
+# Macros that are convenient for shell interaction
+
+$if Bash
+# edit the path
+"\C-xp": "PATH=${PATH}\e\C-e\C-a\ef\C-f"
+
+# prepare to type a quoted word --
+# insert open and close double quotes
+# and move to just after the open quote
+"\C-x\"": "\"\"\C-b"
+
+# insert a backslash (testing backslash escapes
+# in sequences and macros)
+"\C-x\\": "\\"
+
+# Quote the current or previous word
+"\C-xq": "\eb\"\ef\""
+
+# Add a binding to refresh the line, which is unbound
+"\C-xr": redraw-current-line
+
+# Edit variable on current line.
+"\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
+
+$endif
+
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+“\e[5~”: history-search-backward
+“\e[6~”: history-search-forward
+"\e[3~": delete-char
+"\e[2~": quoted-insert
+"\e[5C": forward-word
+"\e[5D": backward-word
+"\e\e[C": forward-word
+"\e\e[D": backward-word
+
+set bell-style visible
+set completion-ignore-case On
+set expand-tilde on
+set convert-meta off
+set input-meta on
+set output-meta on
+set show-all-if-ambiguous on
+set visible-stats on
+set -o vi
+set completion-query-items 150
