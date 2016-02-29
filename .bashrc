@@ -43,6 +43,8 @@ source_script() {
     done
 }
 
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 # Execute scripts under .bashrc.d
 if [[ -d $HOME/.bashrc.d ]]; then
