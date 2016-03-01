@@ -41,6 +41,11 @@ values."
      ;; pip install autoflake
      ;; pip install flake8 pylint
      python
+     ;; javascript beautify
+     ;; you need to install
+     ;; npm install -g tern
+     ;; npm install -g js-beautify
+     ;; npm install -g eslint babel-eslint eslint-plugin-react
      javascript
      ;; shell-scripts
      html
@@ -255,6 +260,17 @@ in `dotspacemacs/user-config'."
       (setq kill-emacs-query-functions (cons *my-kill-query* kill-emacs-query-functions)))
 
   (setq python-fill-column 99)
+
+  (setq-default js2-basic-offset 2
+                js-indent-level 2
+                line-spacing 0
+                helm-display-header-line t
+                backup-inhibited t
+                auto-save-default nil
+                projectile-enable-caching t
+                powerline-default-separator nil
+                )
+
   )
 
 (defun dotspacemacs/user-config ()
