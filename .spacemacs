@@ -35,6 +35,11 @@ values."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     ;; you have to install
+     ;; pip install yapf jedi anaconda-mode
+     ;; pip install jedi==0.8.1 json-rpc==1.8.1 service_factory==0.1.2
+     ;; pip install autoflake
+     ;; pip install flake8 pylint
      python
      javascript
      ;; shell-scripts
@@ -86,7 +91,7 @@ values."
    ;; directory. A string value must be a path to an image format supported
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
-   dotspacemacs-startup-banner 'official
+   dotspacemacs-startup-banner 'nil
    ;; List of items to show in the startup buffer. If nil it is disabled.
    ;; Possible values are: `recents' `bookmarks' `projects'.
    ;; (default '(recents projects))
@@ -246,7 +251,6 @@ values."
 It is called immediately after `dotspacemacs/init'.  You are free to put almost
 any user code here.  The exception is org related code, which should be placed
 in `dotspacemacs/user-config'."
-
   (if (not (memq *my-kill-query* kill-emacs-query-functions))
       (setq kill-emacs-query-functions (cons *my-kill-query* kill-emacs-query-functions)))
 
