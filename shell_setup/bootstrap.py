@@ -11,7 +11,7 @@ __author__ = 'Gaurav Chauhan(gauravschauhan1@gmail.com)'
 
 DOTFILES_REPO_HTTP_URL = 'https://github.com/ImGauravC/mydotfiles.git'
 SPACEMACS_REPO_URL = 'https://github.com/syl20bnr/spacemacs'
-GIT_COMPLETEION_URL = 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh'
+GIT_COMPLETION_URL = 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh'
 
 HOME_DIR = os.path.expanduser('~')
 FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'dotfiles')
@@ -63,7 +63,7 @@ def download_dotfiles():
         shutil.rmtree(FS_DOTFILES_PATH)
     subprocess.call(['git', 'clone', DOTFILES_REPO_HTTP_URL, FS_DOTFILES_PATH])
     logging.info('Dotfiles downloaded---Downloading git prompt now')
-    subprocess.call(['curl', GIT_COMPLETEION_URL, '-o', HOME_DIR + '/.git-prompt.sh'])
+    subprocess.call(['curl', GIT_COMPLETION_URL, '-o', os.path.join(HOME_DIR, '.git-prompt.sh')])
     logging.info('git-prompt.sh downloaded')
 
 def main(args):

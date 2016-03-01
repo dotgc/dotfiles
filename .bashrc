@@ -3,6 +3,13 @@ if [[ $- != *i* ]]; then
     return
 fi
 
+
+# Source global definitions first so that local ones can override them
+if [ -f /etc/bashrc ]; then
+	  . /etc/bashrc
+fi
+
+
 # disable START/STOP signal to the terminal. Especially useful when using screen, tmux, byobu
 stty -ixon
 
@@ -45,22 +52,15 @@ source_script() {
     done
 }
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # Execute scripts under .bashrc.d
 if [[ -d $HOME/.bashrc.d ]]; then
     source_script "$HOME"/.bashrc.d/*.bash
 fi
 
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 unset -v config
-
 
 export PATH
 
