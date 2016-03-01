@@ -1,5 +1,5 @@
 ### Extract Archives ###
-extract () {
+function extract () {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)   tar xjvf $1    ;;
@@ -21,7 +21,7 @@ extract () {
     fi
 }
 
-compress() {
+function compress() {
     if [[ -n "$1" ]]; then
         FILE=$1
         case $FILE in
@@ -37,27 +37,28 @@ compress() {
     fi
 }
 
-chs(){
+function chs(){
     sudo chmod 777 $1 $2
 }
 
 #bu - Back Up a file. Usage "bu filename.txt"
-bu () {
+function bu () {
     cp $1 ${1}-`date +%Y%m%d%H%M`.backup;
 }
 
-install(){
+function install() {
     sudo apt-get install -y $1
 }
 
-mkcd () {
-    mkdir "$1"
-    cd "$1"
+function mkcdr () {
+    mkdir -p "$@" && cd "$@"
 }
 
-top10() { history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head; }
+function top10() {
+    history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head;
+}
 
-dirsize () {
+function dirsize () {
     du -shx * .[a-zA-Z0-9_]* 2> /dev/null | egrep '^ *[0-9.]*[MG]' | sort -n > /tmp/list
     egrep '^ *[0-9.]*M' /tmp/list
     egrep '^ *[0-9.]*G' /tmp/list
@@ -65,7 +66,7 @@ dirsize () {
 }
 
 #netinfo - shows network information for your system
-netinfo () {
+function netinfo () {
     echo "--------------- Network Information ---------------"
     /sbin/ifconfig | awk /'inet addr/ {print $2}'
     /sbin/ifconfig | awk /'Bcast/ {print $3}'
@@ -74,4 +75,32 @@ netinfo () {
     myip=`lynx -dump -hiddenlinks=ignore -nolist http://checkip.dyndns.org:8245/ | sed '/^$/d; s/^[ ]*//g; s/[ ]*$//g' `
     echo "${myip}"
     echo "---------------------------------------------------"
+}
+
+function localip(){
+    function _localip(){ echo "📶  "$(ipconfig getifaddr "$1"); }
+    export -f _localip
+    local purple="\x1B\[35m" reset="\x1B\[m"
+    networksetup -listallhardwareports | \
+        sed -r "s/Hardware Port: (.*)/${purple}\1${reset}/g" | \
+        sed -r "s/Device: (en.*)$/_localip \1/e" | \
+        sed -r "s/Ethernet Address:/📘 /g" | \
+        sed -r "s/(VLAN Configurations)|==*//g"
+}
+
+# find shorthand
+function f() {
+    find . -name "$1" 2>&1 | grep -v 'Permission denied'
+}
+
+# whois a domain or a URL
+function whois() {
+    local domain=$(echo "$1" | awk -F/ '{print $3}') # get domain from URL
+    if [ -z $domain ] ; then
+        domain=$1
+    fi
+    echo "Getting whois record for: $domain …"
+    # avoid recursion
+
+    /usr/bin/whois -h whois.internic.net $domain | sed '/NOTICE:/q'
 }
