@@ -13,8 +13,9 @@ fi
 # disable START/STOP signal to the terminal. Especially useful when using screen, tmux, byobu
 stty -ixon
 
-# History options ignore duplicate commands and whitespace in history
-HISTCONTROL=ignoreboth
+HISTSIZE=1000            # bash history will save N commands
+HISTFILESIZE=${HISTSIZE} # bash will remember N commands
+HISTCONTROL=ignoreboth # History options ignore duplicate commands and whitespace in 
 
 # Keep the times of the commands in history
 HISTTIMEFORMAT='%F %T  '
@@ -47,7 +48,7 @@ source_script() {
     [[ "${@:-1}" == "force" ]] && FORCE=1
     for script in $*; do
         if [[ -x $script || "$FORCE" == 1 ]]; then
-            source $script
+            . $script
         fi
     done
 }

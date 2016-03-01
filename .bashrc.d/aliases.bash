@@ -5,7 +5,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias gitup='git stash; git pull --rebase; git stash pop'
 alias gitst='git status; echo "------STASHES------"; git stash list | head '
-
+alias diskspace="du -S | sort -n -r | more"
+alias folders="find . -maxdepth 1 -type d -print | xargs du -sk | sort -rn"
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
