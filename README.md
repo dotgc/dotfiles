@@ -6,6 +6,6 @@ TODO:
 
 
 Steps to setup:
-  1. cd ~/; wget https://raw.githubusercontent.com/ImGauravC/dotfiles/master/util.py
-  2. wget https://raw.githubusercontent.com/ImGauravC/dotfiles/master/bootstrap.py
-  3. python bootstrap.py [-h] (do -h to see the list of options)
+  1. cd ~/; wget https://raw.githubusercontent.com/ImGauravC/dotfiles/master/prep.sh
+  2. chmod +x prep.sh
+  3. ./prep.sh
