@@ -68,8 +68,10 @@ fi
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-if ($OS == 'OSX'); then
-    [ -f "$HOME"/.osx/*.bash ] && . "$HOME"/.osx/*.bash
+if [[ "$OS" == "OSX" ]]; then
+    . "$HOME"/.osx/*.bash
+fi
+
 
 unset -v config
 
