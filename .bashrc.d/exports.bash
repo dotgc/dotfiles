@@ -58,7 +58,7 @@ function setup_prompt {
         local gitbranch="\$(__git_ps1 '$openp$PURPLEBOLD%s$closep')"
         local openb="$DEFAULT["
         local closeb="$DEFAULT]"
-        export PS1="$openb$user$DEFAULT@$host$closeb $openb$pwd$closeb $gitbranch\n$WHITEBOLD$BLUEBOLD$ $DEFAULT"
+        export PS1="$openb$user$DEFAULT@$host$closeb $openb$pwd$closeb $gitbranch\n$WHITEBOLD$BLUEBOLD> $DEFAULT"
     fi
 }
 
