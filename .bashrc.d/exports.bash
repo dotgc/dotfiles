@@ -51,14 +51,14 @@ function setup_prompt {
     else
         #   PS1="[\u@\h] [\w]\n> "
         local user="$REDBOLD\u"
-        local host="$DEFAULT\h"
+        local host="$GREENBOLD\h"
         local pwd="$BLUEBOLD\w"
-        local openp="$DEFAULT("
-        local closep="$DEFAULT)"
+        local openp="$WHITEBOLD("
+        local closep="$WHITEBOLD)"
         local gitbranch="\$(__git_ps1 '$openp$PURPLEBOLD%s$closep')"
-        local openb="$DEFAULT["
-        local closeb="$DEFAULT]"
-        export PS1="$openb$user$DEFAULT@$host$closeb $openb$pwd$closeb $gitbranch\n$WHITEBOLD$BLUEBOLD> $DEFAULT"
+        local openb="$WHITEBOLD["
+        local closeb="$WHITEBOLD]"
+        export PS1="$openb$user$DEFAULT@$host$closeb $openb$pwd$closeb $gitbranch\n$WHITEBOLD> $DEFAULT"
     fi
 }
 
