@@ -36,6 +36,9 @@ $if Bash
 # Edit variable on current line.
 "\M-\C-v": "\C-a\C-k$\C-y\M-\C-e\C-a\C-y="
 
+# Flip through autocompletion matches with Shift-Tab.
+"\e[Z": menu-complete
+
 $endif
 
 "\e[1~": beginning-of-line
@@ -58,4 +61,7 @@ set output-meta on
 set show-all-if-ambiguous on
 set visible-stats on
 set -o vi
+set mark-symlinked-directories on
+set visible-stats on
+set skip-completed-text on
 set completion-query-items 150

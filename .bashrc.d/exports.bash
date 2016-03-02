@@ -26,11 +26,38 @@ if $_isxrunning; then
     export LESS_TERMCAP_us=$'\E[04;38;5;146m' # begin underline
 fi
 
-export GIT_PS1_SHOWDIRTYSTATE=1
-if [ "$TERM" = "dumb" ] ; then
-    export PS1="[\u@\h] [\w] > "
-    unset GREP_OPTIONS
-else
-    #   PS1="[\u@\h] [\w]\n> "
-    export PS1="\[\033[01;37m\][\[\033[01;31m\]\u\[\033[01;37m\]@\[\033[01;32m\]\h\[\033[01;37m\]] [\[\033[01;34m\]\w\[\033[01;37m\]]\[\033[0;34m\]\$(__git_ps1 ' (%s)')\n\[\033[01;37m\]\[\033[01;34m\]$ \[\033[00m\]"
-fi
+function setup_prompt {
+    local DEFAULT="\[\033[00m\]"
+    local BLACK="\[\033[0;30m\]"
+    local BLACKBOLD="\[\033[1;30m\]"
+    local RED="\[\033[0;31m\]"
+    local REDBOLD="\[\033[1;31m\]"
+    local GREEN="\[\033[0;32m\]"
+    local GREENBOLD="\[\033[1;32m\]"
+    local YELLOW="\[\033[0;33m\]"
+    local YELLOWBOLD="\[\033[1;33m\]"
+    local BLUE="\[\033[0;34m\]"
+    local BLUEBOLD="\[\033[1;34m\]"
+    local PURPLE="\[\033[0;35m\]"
+    local PURPLEBOLD="\[\033[1;35m\]"
+    local CYAN="\[\033[0;36m\]"
+    local CYANBOLD="\[\033[1;36m\]"
+    local WHITE="\[\033[0;37m\]"
+    local WHITEBOLD="\[\033[1;37m\]"
+    export GIT_PS1_SHOWDIRTYSTATE=1
+    if [ "$TERM" = "dumb" ] ; then
+        export PS1="[\u@\h] [\w] > "
+        unset GREP_OPTIONS
+    else
+        #   PS1="[\u@\h] [\w]\n> "
+        local user="$REDBOLD\u"
+        local host="$GREENBOLD\h"
+        local pwd="$BLUEBOLD\w"
+        local gitbranch="$BLUE\$(__git_ps1 ' (%s)')"
+        local openb="$WHITEBOLD["
+        local closeb="$WHITEBOLD]"
+        export PS1="$openb$user$WHITEBOLD@$host$closeb $openb$pwd$closeb $gitbranch\n$WHITEBOLD$BLUEBOLD$ $DEFAULT"
+    fi
+}
+
+setup_prompt

@@ -4,6 +4,13 @@ if [[ $- != *i* ]]; then
 fi
 
 
+if [ "$(uname -s)" = "Darwin" ]; then
+    OS="OSX"
+else
+    OS=$(uname -s)
+fi
+
+
 # Source global definitions first so that local ones can override them
 if [ -f /etc/bashrc ]; then
 	  . /etc/bashrc
@@ -15,7 +22,7 @@ stty -ixon
 
 HISTSIZE=1000            # bash history will save N commands
 HISTFILESIZE=${HISTSIZE} # bash will remember N commands
-HISTCONTROL=ignoreboth # History options ignore duplicate commands and whitespace in 
+HISTCONTROL=ignoreboth # History options ignore duplicate commands and whitespace in
 
 # Keep the times of the commands in history
 HISTTIMEFORMAT='%F %T  '
@@ -44,7 +51,7 @@ fi
 [ -r "$HOME/.git-prompt.sh" ] && . "$HOME/.git-prompt.sh"
 
 # Source a script if it is executable
-source_script() {
+function source_script() {
     [[ "${@:-1}" == "force" ]] && FORCE=1
     for script in $*; do
         if [[ -x $script || "$FORCE" == 1 ]]; then
