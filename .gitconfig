@@ -4,6 +4,7 @@
 [core]
   whitespace = trailing-space,space-before-tab
   excludefile = ~/.gitignore_global
+  filemode = true
 [push]
 	default = simple
 [color]
