@@ -62,4 +62,15 @@ function setup_prompt {
     fi
 }
 
+
+function dp () {
+    if [[ $1 -eq "1" || $# -eq "0" ]]; then
+        export PS1="\033[01;32m$\033[00m "
+    elif [[ $1 -eq "2" ]]; then
+        export PS1="${debian_chroot:+($debian_chroot)}\w\033[01;32m$\033[00m "
+    elif [[ $1 -eq "3" ]]; then
+        setup_prompt
+    fi
+}
+
 setup_prompt

@@ -116,3 +116,18 @@ function whoport() {
         echo "Usage: whoport <port_number>"
     fi
 }
+
+function myip() {
+    local ip=$(curl http://ifconfig.me/ip)
+    echo $ip
+}
+
+function psa () {
+    ps aux | grep $1
+}
+
+function showpkg () {
+    apt-cache pkgnames | grep -i "$1" | sort
+    return;
+
+}
