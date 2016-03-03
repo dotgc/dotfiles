@@ -30,4 +30,4 @@ alias source_bash='. ~/.bash_profile'
 alias histg="history | grep"
 alias top="htop"
 alias ..='cd ..'
-alias ...='cd ...'
+alias ...='cd ../..'
