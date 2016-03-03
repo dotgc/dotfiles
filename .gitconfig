@@ -2,7 +2,7 @@
 	name = Gaurav Chauhan
 	email = iitb.gaurav@gmail.com
 [core]
-	pager = less -r
+  whitespace = trailing-space,space-before-tab
 [alias]
 	di = diff
 	diff = diff --word-diff
@@ -49,3 +49,8 @@
 	logtree = log --graph --oneline --decorate --all
 [push]
 	default = simple
+[color]
+  ui = auto
+[diff]
+  renames = copies
+  mnemonicprefix = true
