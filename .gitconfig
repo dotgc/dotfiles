@@ -3,6 +3,16 @@
 	email = iitb.gaurav@gmail.com
 [core]
   whitespace = trailing-space,space-before-tab
+  excludefile = ~/.gitignore_global
+[push]
+	default = simple
+[color]
+  ui = auto
+[diff]
+  renames = copies
+  mnemonicprefix = true
+[help]
+  autocorrect = 30
 [alias]
 	di = diff
 	diff = diff --word-diff
@@ -47,10 +57,3 @@
 	ours = "!f() { git co --ours $@ && git add $@; }; f"
      	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
 	logtree = log --graph --oneline --decorate --all
-[push]
-	default = simple
-[color]
-  ui = auto
-[diff]
-  renames = copies
-  mnemonicprefix = true
