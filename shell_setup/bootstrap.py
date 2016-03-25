@@ -74,6 +74,10 @@ def download_dotfiles():
     subprocess.call(['curl', GIT_COMPLETION_URL, '-o', os.path.join(HOME_DIR, '.git-prompt.sh')])
     logging.info('git-prompt.sh downloaded')
 
+def revert():
+    # delete all symlinks created using this script and setup dotfiles from backup
+    pass
+
 def main(args):
     if args.l:
         util.add_stdout_logging()
