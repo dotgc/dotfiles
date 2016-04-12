@@ -31,3 +31,5 @@ alias histg="history | grep"
 alias top="htop"
 alias ..='cd ..'
 alias ...='cd ../..'
+alias fadb=fb-adb
+alias pdf='open -a Preview '

@@ -25,7 +25,7 @@ def setup_dotfiles():
     # Create backup directory if needed
     if not os.path.exists(BACKUP_DIR):
         os.makedirs(BACKUP_DIR)
-        
+
     for file_name in os.listdir(FS_DOTFILES_PATH):
         item_path = os.path.join(FS_DOTFILES_PATH, file_name)
         if file_name.startswith('.') and file_name not in DOTFILES_TO_IGNORE:
@@ -46,9 +46,9 @@ def setup_dotfiles():
             else:
                 if os.path.isfile(target_symlink_path):
                     logging.info('Sourcing %s' % file_name)
-                    # Symlinking this way doesn't work. This is kind of times that make me want to learn bash scripting 
+                    # Symlinking this way doesn't work. This is kind of times that make me want to learn bash scripting
                     # subprocess.call(['source', target_symlink_path])
- 
+
     logging.info('Dotfiles setup')
 
 def setup_emacs():
@@ -104,4 +104,3 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     main(args)
-
