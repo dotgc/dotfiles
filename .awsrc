@@ -2,5 +2,5 @@
 complete -C aws_completer aws
 
 export EC2_HOME='/usr/local/Cellar/ec2-api-tools/1.7.5.1'
-export AWS_ACCESS_KEY='AKIAI5MJY3OADPTD3AYQ'
-export AWS_SECRET_KEY='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'
+export AWS_ACCESS_KEY=''
+export AWS_SECRET_KEY=''
