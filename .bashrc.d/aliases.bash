@@ -33,3 +33,4 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias fadb=fb-adb
 alias pdf='open -a Preview '
+alias ppath="echo $PATH | sed -e 's/:/\'$'\n/g'"
