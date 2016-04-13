@@ -262,7 +262,7 @@ in `dotspacemacs/user-config'."
   (setq python-fill-column 99)
 
   (setq-default js2-basic-offset 4
-                js-indent-level 4
+                js-indent-level 2
                 line-spacing 0
                 backup-inhibited t
                 auto-save-default nil
