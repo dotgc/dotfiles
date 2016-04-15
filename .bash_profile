@@ -7,6 +7,7 @@ export CASKROOM="/opt/homebrew-cask/Caskroom"
 . "$CASKROOM/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
 . "$CASKROOM/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
 
+export PATH=$PATH:/usr/local/sbin
 export GOPATH=$HOME/work/golang
 export GOROOT=/usr/local/opt/go/libexec
 export PATH=$PATH:$GOPATH/bin
