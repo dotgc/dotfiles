@@ -9,7 +9,7 @@ import util
 
 __author__ = 'Gaurav Chauhan(gauravschauhan1@gmail.com)'
 
-DOTFILES_REPO_HTTP_URL = 'https://github.com/ImGauravC/mydotfiles.git'
+DOTFILES_REPO_HTTP_URL = 'https://dotgc@github.com/dotgc/dotfiles.git'
 SPACEMACS_REPO_URL = 'https://github.com/syl20bnr/spacemacs'
 GIT_COMPLETION_URL = 'https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh'
 
