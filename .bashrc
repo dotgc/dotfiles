@@ -40,7 +40,7 @@ shopt -s histappend # Append rather than overwrite Bash history
 shopt -s progcomp # Use programmable completion, if available
 # shopt -s shift_verbose # Warn me if I try to shift when there's nothing there
 # shopt -u sourcepath # Don't use PATH to find files to source
-
+complete -d cd # lists only directories with cd <TAB>
 # These options only exist since Bash 4.0-alpha
 if ((${BASH_VERSINFO[0]} >= 4)); then
     shopt -s checkjobs # Warn me about stopped jobs when exiting
