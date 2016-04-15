@@ -14,3 +14,4 @@ Steps to setup:
 
 Notes:
   1. If the repo was cloned using https, change the remote url to have <username>@. This would prevent asking for username everytime. It'll still ask for password.
+  2. Upgrade bash to version 4. Mac ships with an old version of it.
