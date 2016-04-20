@@ -48,7 +48,7 @@ def setup_dotfiles():
                     logging.info('Sourcing %s' % file_name)
                     # Symlinking this way doesn't work. This is kind of times that make me want to learn bash scripting
                     # subprocess.call(['source', target_symlink_path])
-
+    logging.basicConfig
     logging.info('Dotfiles setup')
 
 def setup_emacs():

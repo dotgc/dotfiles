@@ -1,6 +1,6 @@
 [user]
 	name = Gaurav Chauhan
-	email = iitb.gaurav@gmail.com
+	email = gauravschauhan1@gmail.com
 [core]
   whitespace = trailing-space,space-before-tab
   excludefile = ~/.gitignore_global
@@ -58,3 +58,7 @@
 	ours = "!f() { git co --ours $@ && git add $@; }; f"
      	theirs = "!f() { git co --theirs $@ && git add $@; }; f"
 	logtree = log --graph --oneline --decorate --all
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
