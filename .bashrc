@@ -20,7 +20,7 @@ fi
 # disable START/STOP signal to the terminal. Especially useful when using screen, tmux, byobu
 stty -ixon
 
-HISTSIZE=1000            # bash history will save N commands
+HISTSIZE=50000            # bash history will save N commands
 HISTFILESIZE=${HISTSIZE} # bash will remember N commands
 HISTCONTROL=ignoreboth # History options ignore duplicate commands and whitespace in
 
