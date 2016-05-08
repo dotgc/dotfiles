@@ -3,8 +3,9 @@ if [ $TERM = "screen" ]; then echo -ne "\033k${USER}@${HOSTNAME}\033\\"; fi;
 '
 
 # User specific aliases and functions
-export EDITOR=emacs
-export VISUAL=emacs
+export EDITOR='emacsclient -nw -c -a ""'
+export VISUAL=$EDITOR
+export GIT_EDITOR=vim
 export PATH=$PATH:$HOME/bin
 export ROOT=$HOME/code
 #export PYTHONPATH=$PYTHONPATH:$ROOT/python:$ROOT/python/stubs:.

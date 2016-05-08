@@ -149,7 +149,6 @@ endif
 " Don't copy the contents of an overwritten selection.
 vnoremap p "_dP
 
-
 " leader key
 let mapleader=","
 
@@ -174,3 +173,6 @@ let g:jedi#auto_close_doc = 1
 let g:jedi#popup_on_dot = 0
 
 let python_highlight_all = 1
+
+let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }

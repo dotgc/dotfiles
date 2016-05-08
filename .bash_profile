@@ -3,6 +3,9 @@ if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
 
+
+#export RBENV_ROOT=/usr/local/var/rbenv
+export HOMEBREW_GITHUB_API_TOKEN=1943699e81c4a50d19f417ce7928399eaa6ac45b
 export CASKROOM="/opt/homebrew-cask/Caskroom"
 . "$CASKROOM/google-cloud-sdk/latest/google-cloud-sdk/path.bash.inc"
 . "$CASKROOM/google-cloud-sdk/latest/google-cloud-sdk/completion.bash.inc"
@@ -24,4 +27,4 @@ export FINDUTILS_PATH=/usr/local/opt/findutils/libexec
 export PATH=$PATH:$FINDUTILS_PATH/gnubin
 export MANPATH=$MANPATH:$FINDUTILS_PATH/gnuman
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+eval "$(rbenv init -)"

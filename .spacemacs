@@ -259,17 +259,47 @@ in `dotspacemacs/user-config'."
   (if (not (memq *my-kill-query* kill-emacs-query-functions))
       (setq kill-emacs-query-functions (cons *my-kill-query* kill-emacs-query-functions)))
 
+  (if (not (memq *my-kill-query* delete-frame-functions))
+      (setq delete-frame-functions (cons *my-kill-query* delete-frame-functions)))
+
   (setq python-fill-column 99)
 
-  (setq-default js2-basic-offset 4
+  (setq-default js2-basic-offset 2
                 js-indent-level 2
                 line-spacing 0
                 backup-inhibited t
                 auto-save-default nil
                 projectile-enable-caching t
                 powerline-default-separator nil
+                css-indent-offset 2
+                web-mode-markup-indent-offset 2
+                web-mode-css-indent-offset 2
+                web-mode-code-indent-offset 2
+                web-mode-attr-indent-offset 2
                 )
+    ;; Indentation from
+  ;; http://blog.binchen.org/posts/easy-indentation-setup-in-emacs-for-web-development.html
+  (defun my-setup-indent (n)
+    ;; web development
+    (setq coffee-tab-width n) ; coffeescript
+    (setq javascript-indent-level n) ; javascript-mode
+    (setq js-indent-level n) ; js-mode
+    (setq js2-basic-offset n) ; js2-mode
+    (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
+    (setq web-mode-css-indent-offset n) ; web-mode, css in html file
+    (setq web-mode-code-indent-offset n) ; web-mode, js code in html file
+    (setq css-indent-offset n) ; css-mode
+    )
 
+  (defun my-personal-code-style ()
+    (interactive)
+    (message "Indentation set to two")
+    (setq indent-tabs-mode nil) ; use space instead of tab
+    (my-setup-indent 2) ; indent 2 spaces width
+    )
+
+  ;; call indentation
+  (my-personal-code-style)
   )
 
 (defun dotspacemacs/user-config ()

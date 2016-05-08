@@ -1,5 +1,5 @@
 ### Extract Archives ###
-function extract () {
+function extract() {
     if [ -f $1 ] ; then
         case $1 in
             *.tar.bz2)   tar xjvf $1    ;;
@@ -42,7 +42,7 @@ function chs(){
 }
 
 #bu - Back Up a file. Usage "bu filename.txt"
-function bu () {
+function bu() {
     cp $1 ${1}-`date +%Y%m%d%H%M`.backup;
 }
 
@@ -50,7 +50,7 @@ function install() {
     sudo apt-get install -y $1
 }
 
-function mkcdr () {
+function mkcdr() {
     mkdir -p "$@" && cd "$@"
 }
 
@@ -58,7 +58,7 @@ function top10() {
     history | awk '{a[$2]++ } END{for(i in a){print a[i] " " i}}' | sort -rn | head;
 }
 
-function dirsize () {
+function dirsize() {
     du -shx * .[a-zA-Z0-9_]* 2> /dev/null | egrep '^ *[0-9.]*[MG]' | sort -n > /tmp/list
     egrep '^ *[0-9.]*M' /tmp/list
     egrep '^ *[0-9.]*G' /tmp/list
@@ -66,7 +66,7 @@ function dirsize () {
 }
 
 #netinfo - shows network information for your system
-function netinfo () {
+function netinfo() {
     echo "--------------- Network Information ---------------"
     /sbin/ifconfig | awk /'inet addr/ {print $2}'
     /sbin/ifconfig | awk /'Bcast/ {print $3}'
@@ -122,11 +122,15 @@ function myip() {
     echo $ip
 }
 
-function psa () {
-    ps aux | grep $1
+function psa() {
+    if [[ -z $1 ]]; then
+        echo "psa process_name"
+    else
+        ps aux | grep -i $1 | grep -v grep
+    fi
 }
 
-function showpkg () {
+function showpkg() {
     apt-cache pkgnames | grep -i "$1" | sort
     return;
 }
