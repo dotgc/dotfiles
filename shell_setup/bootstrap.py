@@ -83,11 +83,10 @@ def download_dotfiles():
         ans = raw_input() or 'y'
         if ans == 'y':
             shutil.rmtree(FS_DOTFILES_PATH)
+            subprocess.call(['git', 'clone', DOTFILES_REPO_HTTP_URL, FS_DOTFILES_PATH])
+            logging.info('Dotfiles downloaded --- Downloading git prompt now')
         else:
             logging.info('not downloading dotfiles again')
-            return
-    subprocess.call(['git', 'clone', DOTFILES_REPO_HTTP_URL, FS_DOTFILES_PATH])
-    logging.info('Dotfiles downloaded --- Downloading git prompt now')
     subprocess.call(['curl', GIT_COMPLETION_URL, '-o', os.path.join(HOME_DIR, '.git-prompt.sh')])
     logging.info('git-prompt.sh downloaded')
 
