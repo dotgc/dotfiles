@@ -6,6 +6,7 @@ import subprocess
 import argparse
 import logging
 import util
+import time
 
 __author__ = 'Gaurav Chauhan(gauravschauhan1@gmail.com)'
 
@@ -33,16 +34,18 @@ def setup_dotfiles():
             target_symlink_path = os.path.join(HOME_DIR, file_name)
             if os.path.exists(target_symlink_path):
                 shutil.move(target_symlink_path, os.path.join(BACKUP_DIR, target_symlink_path))
+                time.sleep(200)
                 '''
                 if os.path.islink(target_symlink_path):
                     os.unlink(target_symlink_path)
                 else:
                     shutil.rmtree(target_symlink_path) if os.path.isdir(target_symlink_path) else os.remove(target_symlink_path)
                 '''
+
             try:
                 os.symlink(item_path, target_symlink_path)
             except OSError as e:
-                logging.info('Found exception creating symlink: %r', e)
+                logging.info('Found exception creating symlink: %r for file: %s', e, file_name)
             else:
                 if os.path.isfile(target_symlink_path):
                     logging.info('Sourcing %s' % file_name)
