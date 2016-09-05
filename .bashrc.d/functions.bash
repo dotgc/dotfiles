@@ -157,3 +157,11 @@ function sshlist() {
     echo 'list hosts defined in ssh config'
     awk '$1 ~ /Host$/ {for (i=2; i<=NF; i++) print $i}' ~/.ssh/config
 }
+
+function pport() {
+    if [[ -n "$1" ]]; then
+        lsof -i:$1
+    else
+        echo "Usage: pport <port_number>"
+    fi
+}

@@ -1,0 +1,4 @@
+#!/bin/sh
+EXT="$1"
+shift
+find . -name '*.'$EXT | xargs grep --color=auto "$*"

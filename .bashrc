@@ -20,12 +20,14 @@ fi
 # disable START/STOP signal to the terminal. Especially useful when using screen, tmux, byobu
 stty -ixon
 
-HISTSIZE=50000            # bash history will save N commands
+HISTSIZE=99999            # bash history will save N commands
 HISTFILESIZE=${HISTSIZE} # bash will remember N commands
 HISTCONTROL=ignoreboth # History options ignore duplicate commands and whitespace in
 
 # Keep the times of the commands in history
 HISTTIMEFORMAT='%F %T  '
+HISTIGNORE="ls:exit:history:[bf]g:jobs:reset:clear"
+
 
 shopt -s cdspell # Autocorrect fudged paths in cd calls
 shopt -s checkhash # Update the hash table properly
@@ -83,3 +85,7 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export NVM_DIR="/Users/dotgc/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh

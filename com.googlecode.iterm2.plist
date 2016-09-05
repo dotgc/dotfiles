@@ -17,7 +17,7 @@
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
-	<true/>
+	<false/>
 	<key>ClosingHotkeySwitchesSpaces</key>
 	<true/>
 	<key>CommandSelection</key>
@@ -305,6 +305,8 @@
 	<string></string>
 	<key>NSScrollAnimationEnabled</key>
 	<false/>
+	<key>NSScrollViewShouldScrollUnderTitlebar</key>
+	<false/>
 	<key>NSTableView Columns KeyBingingTable</key>
 	<array>
 		<data>
@@ -316,16 +318,23 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>302</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
+	<key>NSToolbar Configuration com.apple.NSColorPanel</key>
+	<dict>
+		<key>TB Is Shown</key>
+		<integer>1</integer>
+	</dict>
 	<key>NSWindow Frame Preferences</key>
-	<string>188 287 924 485 0 0 1280 777 </string>
+	<string>188 316 606 456 0 0 1280 777 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>330 305 620 392 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>131 87 920 660 0 0 1280 777 </string>
+	<string>832 113 893 660 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>152 139 920 638 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -550,7 +559,7 @@
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
-			<string>No</string>
+			<string>Recycle</string>
 			<key>Default Bookmark</key>
 			<string>No</string>
 			<key>Disable Printing</key>
@@ -929,6 +938,8 @@
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
+			<key>Session Close Undo Timeout</key>
+			<integer>15</integer>
 			<key>Set Local Environment Vars</key>
 			<true/>
 			<key>Shortcut</key>
@@ -1058,10 +1069,38 @@
 			<string>/Users/dotgc</string>
 		</dict>
 	</array>
+	<key>NoSyncConfirmBeta</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt</key>
+	<true/>
+	<key>NoSyncDoNotWarnBeforePastingOneLineEndingInNewlineAtShellPrompt_selection</key>
+	<integer>1</integer>
+	<key>NoSyncInstallationId</key>
+	<string>1F63BA37-E981-4C00-8679-6D01DC70387F</string>
+	<key>NoSyncLastTipTime</key>
+	<real>488039436.126867</real>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
+	<key>NoSyncPermissionToShowTip</key>
+	<true/>
+	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
+	<real>486638791.818165</real>
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>481191692.358154</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>482341276.01322103</real>
+	<real>486462768.15228403</real>
+	<key>NoSyncTipsToNotShow</key>
+	<array>
+		<string>000</string>
+		<string>0000</string>
+		<string>0001</string>
+		<string>0002</string>
+		<string>0003</string>
+		<string>0004</string>
+		<string>0005</string>
+	</array>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -1119,12 +1158,14 @@
 	<integer>3</integer>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
+	<key>SUFeedAlternateAppNameKey</key>
+	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml</string>
+	<string>https://iterm2.com/appcasts/final.xml?shard=31</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-04-15T07:02:35Z</date>
+	<date>2016-06-18T05:23:28Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -1139,6 +1180,8 @@
 	<integer>4</integer>
 	<key>SwitchWindowModifier</key>
 	<integer>6</integer>
+	<key>TabStyle</key>
+	<integer>0</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
 	<key>ThreeFingerEmulates</key>
@@ -1155,6 +1198,10 @@
 	<true/>
 	<key>UseLionStyleFullscreen</key>
 	<true/>
+	<key>WebKitDefaultFontSize</key>
+	<integer>11</integer>
+	<key>WebKitStandardFont</key>
+	<string>.AppleSystemUIFont</string>
 	<key>WindowNumber</key>
 	<true/>
 	<key>WindowStyle</key>
@@ -1162,6 +1209,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>2.1.4</string>
+	<string>3.0.2</string>
 </dict>
 </plist>

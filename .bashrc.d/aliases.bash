@@ -36,10 +36,10 @@ alias pdf='open -a Preview '
 alias ppath="echo $PATH | sed -e 's/:/\'$'\n/g'"
 alias emacs='emacsclient -nw -c -a ""'
 alias gerp='grep'
-alias dotfiles="subl  ~/.dotfiles"
+alias dotfiles="subl  ~/dotfiles"
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias tial='tail'
 alias dott="cd ${HOME}/.dotfiles"
 alias pingg='ping www.google.com'
-alias funcs="cat ~/dotfiles/.bashrc.d/functions.bash | grep function | awk '{print \$2}'"
+alias funcs="cat ~/dotfiles/.bashrc.d/functions.bash | grep function | awk '{print OB\$2}'"
