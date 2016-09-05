@@ -66,8 +66,6 @@ def setup_emacs():
 
 def setup_vim():
     logging.info('Setting up vim')
-    if os.path.exists(VIM_DIRECTORY):
-        shutil.rmtree(VIM_DIRECTORY)
     subprocess.call(['git', 'clone', VUNDLE_REPO_URL, VIM_DIRECTORY + '/bundle/Vundle.vim'])
     logging.info('Vim - vundle setup')
 
