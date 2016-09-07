@@ -34,7 +34,7 @@ alias ...='cd ../..'
 alias fadb=fb-adb
 alias pdf='open -a Preview '
 alias ppath="echo $PATH | sed -e 's/:/\'$'\n/g'"
-alias emacs='emacsclient -nw -c -a ""'
+# alias emacs='emacsclient -nw -c -a ""'
 alias gerp='grep'
 alias dotfiles="subl  ~/dotfiles"
 # Pipe my public key to my clipboard.
