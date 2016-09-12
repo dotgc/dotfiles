@@ -42,4 +42,5 @@ alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pa
 alias tial='tail'
 alias dott="cd ${HOME}/.dotfiles"
 alias pingg='ping www.google.com'
-alias funcs="cat ~/dotfiles/.bashrc.d/functions.bash | grep function | awk '{print OB\$2}'"
+alias funcs="cat ~/dotfiles/lib/functions.bash | grep function | awk '{print OB\$2}'"
+alias myip="ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'"

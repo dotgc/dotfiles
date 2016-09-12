@@ -1,6 +1,7 @@
 [user]
 	name = Gaurav Chauhan
 	email = gauravschauhan1@gmail.com
+	signingkey = 836EE3D6
 [core]
   whitespace = trailing-space,space-before-tab
   excludefile = ~/.gitignore_global
@@ -64,3 +65,5 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[commit]
+	gpgsign = true
