@@ -63,8 +63,8 @@ function source_script() {
 }
 
 # Execute scripts under .bashrc.d
-if [[ -d $HOME/lib ]]; then
-    source_script "$HOME"/lib/*.bash
+if [[ -d $HOME/.lib ]]; then
+    source_script "$HOME"/.lib/*.bash
 fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
