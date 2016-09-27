@@ -61,7 +61,6 @@ set output-meta on
 set show-all-if-ambiguous on
 set visible-stats on
 set colored-stats on
-set -o vi
 set mark-symlinked-directories on
 set visible-stats on
 set skip-completed-text on
