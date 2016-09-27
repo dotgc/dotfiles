@@ -223,7 +223,6 @@ cask 'tunnelbear'
 cask 'virtualbox'
 cask 'vlc'
 cask 'wireshark'
-mas 'Install macOS Sierra Public Beta (12.0.26)', id: 1073263501
 mas 'Numbers (4.0)', id: 409203825
 mas 'GarageBand (10.1.2)', id: 682658836
 mas 'iMovie (10.1.2)', id: 408981434
