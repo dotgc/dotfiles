@@ -50,6 +50,9 @@ if ((${BASH_VERSINFO[0]} >= 4)); then
     shopt -s globstar # Enable double-starring paths
 fi
 
+set -o physical
+set -o notify
+
 [ -r "$HOME/.git-prompt.sh" ] && . "$HOME/.git-prompt.sh"
 
 # Source a script if it is executable
