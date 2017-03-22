@@ -15,7 +15,7 @@ def init_logging():
 
     warnings.showwarning = my_showwarning
 
-def add_file_logging(logname, is_cron=False, shard_id=None, log_backup_count=None, formatter=None):
+def add_file_logging(logname='setup_log', is_cron=False, shard_id=None, log_backup_count=None, formatter=None):
     init_logging()
     default_backup_count = 500
     if shard_id is not None:
