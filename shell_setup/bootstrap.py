@@ -16,7 +16,7 @@ GIT_COMPLETION_URL = 'https://raw.githubusercontent.com/git/git/master/contrib/c
 VUNDLE_REPO_URL = 'https://github.com/VundleVim/Vundle.vim.git'
 
 HOME_DIR = os.path.expanduser('~')
-FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'dotfiles')
+FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'Dotfiles')
 EMACS_LIBS_DIR = os.path.join(HOME_DIR, '.emacs.d')
 VIM_DIRECTORY = os.path.join(HOME_DIR, '.vim')
 BACKUP_DIR = os.path.join(HOME_DIR, 'old-dotfiles.backup')
