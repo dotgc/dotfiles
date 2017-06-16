@@ -36,7 +36,7 @@ alias pdf='open -a Preview '
 alias ppath="echo $PATH | sed -e 's/:/\'$'\n/g'"
 # alias emacs='emacsclient -nw -c -a ""'
 alias gerp='grep'
-alias dotfiles="subl  ~/dotfiles"
+alias dotfiles="code  ~/dotfiles"
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias tial='tail'
