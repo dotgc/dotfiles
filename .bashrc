@@ -77,6 +77,7 @@ if [[ "$OS" == "OSX" ]]; then
     . "$HOME"/.osx/*.bash
 fi
 
+# export DISABLE_AUTO_TITLE=true
 
 unset -v config
 
