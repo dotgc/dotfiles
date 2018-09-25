@@ -54,10 +54,13 @@ function setup_prompt {
         local pwd="$BLUEBOLD\w"
         local openp="$WHITEBOLD("
         local closep="$WHITEBOLD)"
+        local timestamp="$YELLOWBOLD\D{%F %T}"
         local gitbranch="\$(__git_ps1 '$openp$PURPLEBOLD%s$closep')"
         local openb="$WHITEBOLD["
         local closeb="$WHITEBOLD]"
-        export PS1="$openb$user$DEFAULT@$host$closeb $openb$pwd$closeb $gitbranch\n$WHITEBOLD> $DEFAULT"
+        local atrate="$DEFAULT@"
+        local promptsign=">"
+        export PS1="$openb$user$atrate$host$closeb $openb$timestamp$closeb $openb$pwd$closeb $gitbranch\n$promptsign $DEFAULT"
     fi
 }
 

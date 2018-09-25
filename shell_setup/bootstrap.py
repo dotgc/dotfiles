@@ -7,6 +7,7 @@ import argparse
 import logging
 import util
 import time
+import stat
 
 __author__ = 'Gaurav Chauhan(gauravschauhan1@gmail.com)'
 
@@ -16,45 +17,110 @@ GIT_COMPLETION_URL = 'https://raw.githubusercontent.com/git/git/master/contrib/c
 VUNDLE_REPO_URL = 'https://github.com/VundleVim/Vundle.vim.git'
 
 HOME_DIR = os.path.expanduser('~')
-FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'Dotfiles')
+
+FS_DOTFILES_PATH = os.path.join(HOME_DIR, 'dotfiles')
+LIB_DIR_PATH = os.path.join(FS_DOTFILES_PATH, '.lib')
+BIN_DIR_PATH = os.path.join(FS_DOTFILES_PATH, 'bin')
+
 EMACS_LIBS_DIR = os.path.join(HOME_DIR, '.emacs.d')
 VIM_DIRECTORY = os.path.join(HOME_DIR, '.vim')
 BACKUP_DIR = os.path.join(HOME_DIR, 'old-dotfiles.backup')
+VUNDLE_PATH = os.path.join(VIM_DIRECTORY, 'bundle/Vundle.vim')
 
-DOTFILES_TO_IGNORE = frozenset(['.gitignore', '.git'])
+DOTFILES_TO_IGNORE = set(['.gitignore', '.git', '.vscode'])
+
+LOCAL_BASH_PROFILE_NAME = '.bash_profile.local'
+
+def pre_setup():
+    if 'OS' in os.environ:
+        os_name = os.environ['OS']
+        if os_name == 'OSX':
+            DOTFILES_TO_IGNORE.add('.osx')
 
 def setup_dotfiles():
-    logging.info('Setting up dotfiles')
+    logging.info('Setting up dotfiles...')
     # Create backup directory if needed
     if not os.path.exists(BACKUP_DIR):
         os.makedirs(BACKUP_DIR)
 
-    for file_name in os.listdir(FS_DOTFILES_PATH):
-        item_path = os.path.join(FS_DOTFILES_PATH, file_name)
-        if file_name.startswith('.') and file_name not in DOTFILES_TO_IGNORE:
-            # Must be a dotfile. Create symlink
-            target_symlink_path = os.path.join(HOME_DIR, file_name)
-            if os.path.exists(target_symlink_path):
-                shutil.move(target_symlink_path, os.path.join(BACKUP_DIR, target_symlink_path))
-                time.sleep(0.3)
-                '''
-                if os.path.islink(target_symlink_path):
-                    os.unlink(target_symlink_path)
-                else:
-                    shutil.rmtree(target_symlink_path) if os.path.isdir(target_symlink_path) else os.remove(target_symlink_path)
-                '''
-
-            try:
-                os.symlink(item_path, target_symlink_path)
-            except OSError as e:
-                logging.info('Found exception creating symlink: %r for file: %s', e, file_name)
+    for file_name in get_dotfile_names_iterator():
+        # Must be a dotfile. Create symlink
+        target_symlink_path = os.path.join(HOME_DIR, file_name)
+        if os.path.exists(target_symlink_path):
+            shutil.move(target_symlink_path, os.path.join(BACKUP_DIR, target_symlink_path))
+            time.sleep(0.3)
+            '''
+            if os.path.islink(target_symlink_path):
+                os.unlink(target_symlink_path)
             else:
-                if os.path.isfile(target_symlink_path):
-                    logging.info('Sourcing %s' % file_name)
-                    # Symlinking this way doesn't work. This is kind of times that make me want to learn bash scripting
-                    # subprocess.call(['source', target_symlink_path])
+                shutil.rmtree(target_symlink_path) if os.path.isdir(target_symlink_path) else os.remove(target_symlink_path)
+            '''
+
+        item_path = os.path.join(FS_DOTFILES_PATH, file_name)
+        success = create_symlink(item_path, target_symlink_path)
+        if success:
+            logging.info("Symlinked file: %s", file_name)
+            if os.path.isfile(target_symlink_path):
+                pass
+                # Symlinking this way doesn't work because this sources the files in the child process.
+                # This is kind of times that make me want to learn bash scripting
+                # For the time, just source ~/.bash_profile once after setup
+                # subprocess.call(['source', target_symlink_path])
+        else:
+            logging.info('Found exception creating symlink: %r for file: %s', e, file_name)
+
+    create_local_bash_file()
     logging.basicConfig
     logging.info('Dotfiles setup')
+    logging.info('Please source dotfiles using source ~/.bash_profile')
+
+
+def get_dotfile_names_iterator():
+    for file_name in os.listdir(FS_DOTFILES_PATH):
+        if file_name.startswith('.') and file_name not in DOTFILES_TO_IGNORE:
+            yield file_name
+
+def remove_symlinks():
+    for file_name in get_dotfile_names_iterator():
+        path_to_remove = os.path.join(HOME_DIR, file_name)
+        if os.path.exists(path_to_remove):
+            logging.info("removing already existing symlink for file: %s", file_name)
+            os.remove(path_to_remove)
+
+
+def create_symlink(item_path, target_symlink_path):
+    try:
+        os.symlink(item_path, target_symlink_path)
+        return True
+    except OSError as e:
+        return False
+
+def create_local_bash_file():
+    logging.info('Creating local bash profile...')
+    file_path = os.path.join(FS_DOTFILES_PATH, LOCAL_BASH_PROFILE_NAME)
+    if not os.path.exists(file_path):
+        with open(file_path, 'w') as f:
+            f.write("# Keep your local machine specific bash settings here. This is not version controlled")
+        target_symlink_path = os.path.join(HOME_DIR, LOCAL_BASH_PROFILE_NAME)
+        success = create_symlink(file_path, target_symlink_path)
+        if not success:
+            logging.info('Found exception creating symlink: %r for file: %s', e, file_name)
+
+
+def make_executable():
+    user_perms = stat.S_IRUSR | stat.S_IWUSR | stat.S_IXUSR
+    group_perms = stat.S_IRGRP | stat.S_IXGRP
+    others_perms = stat.S_IROTH | stat.S_IXOTH
+    perms_bit = user_perms | group_perms | others_perms
+    for file_path in get_dotfile_names_iterator():
+        os.chmod(file_path, perms_bit)
+
+    for file_name in os.listdir(LIB_DIR_PATH):
+        os.chmod(os.path.join(LIB_DIR_PATH, file_name), perms_bit)
+
+    for file_name in os.listdir(BIN_DIR_PATH):
+        os.chmod(os.path.join(BIN_DIR_PATH, file_name), perms_bit)
+
 
 def setup_emacs():
     # setup spacemacs
@@ -66,7 +132,8 @@ def setup_emacs():
 
 def setup_vim():
     logging.info('Setting up vim')
-    subprocess.call(['git', 'clone', VUNDLE_REPO_URL, VIM_DIRECTORY + '/bundle/Vundle.vim'])
+    if not os.path.exists(VUNDLE_PATH):
+        subprocess.call(['git', 'clone', VUNDLE_REPO_URL, VUNDLE_PATH])
     logging.info('Vim - vundle setup')
 
 
@@ -95,15 +162,17 @@ def revert():
     pass
 
 def main(args):
-    if args.l:
-        util.add_stdout_logging()
-    else:
+    pre_setup()
+    util.add_stdout_logging()
+    if args.f:
         util.add_file_logging()
 
     download_dotfiles()
 
     if args.d or args.a:
+        remove_symlinks()
         setup_dotfiles()
+        make_executable()
     if args.e or args.a:
         setup_emacs()
     if args.t or args.a:
@@ -115,7 +184,7 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Bootstrap dotfiles')
-    parser.add_argument('--l', action='store_false', default=True, help='Dump logging to stdout/stderr')
+    parser.add_argument('--f', action='store_true', default=False, help='Dump logging to file')
 
     parser.add_argument('--a', action='store_true', default=False, help='Setup all')
 

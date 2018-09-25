@@ -1,6 +1,7 @@
 
 # standard ubuntu aliases
 alias ll='ls -AlF'
+alias lt='ls -AltF'
 alias la='ls -A'
 alias l='ls -CF'
 alias sl='ll'
@@ -36,12 +37,17 @@ alias pdf='open -a Preview '
 alias ppath="echo $PATH | sed -e 's/:/\'$'\n/g'"
 # alias emacs='emacsclient -nw -c -a ""'
 alias gerp='grep'
-alias dotfiles="code  ~/dotfiles"
+alias dotfiles="code ~/dotfiles"
 # Pipe my public key to my clipboard.
 alias pubkey="more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'"
 alias tial='tail'
 alias dott="cd ${HOME}/.dotfiles"
 alias pingg='ping www.google.com'
-alias funcs="cat ~/dotfiles/lib/functions.bash | grep function | awk '{print OB\$2}'"
+alias funcs="cat ~/dotfiles/.lib/functions.bash | grep function | awk '{print OB\$2}'"
 alias myip="ip addr show eth0 | grep inet | awk '{ print $2; }' | sed 's/\/.*$//'"
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+alias rm='rm -vi'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias ccat="pygmentize -g"
+alias sshconf="cat ~/.ssh/config"

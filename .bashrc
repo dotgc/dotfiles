@@ -73,8 +73,9 @@ fi
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
+
 if [[ "$OS" == "OSX" ]]; then
-    . "$HOME"/.osx/*.bash
+    source_script "$HOME"/.osx/*.bash
 fi
 
 # export DISABLE_AUTO_TITLE=true

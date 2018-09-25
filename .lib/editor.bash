@@ -1,1 +1,1 @@
-EDITOR=emacs
+EDITOR=code

@@ -165,3 +165,9 @@ function pport() {
         echo "Usage: pport <port_number>"
     fi
 }
+
+
+function swap() {
+    local TMPFILE=tmp.$$
+    sudo mv "$1" $TMPFILE && mv "$2" "$1" && mv $TMPFILE $2
+}
