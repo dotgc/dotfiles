@@ -149,7 +149,7 @@ def download_dotfiles():
     logging.info('Downloading dotfile')
     if os.path.exists(FS_DOTFILES_PATH):
         logging.info("dotfiles exists. re-download? (y/n) - default y")
-        ans = raw_input() or 'y'
+        ans = input() or 'y'
         if ans == 'y':
             shutil.rmtree(FS_DOTFILES_PATH)
             subprocess.call(['git', 'clone', DOTFILES_REPO_HTTP_URL, FS_DOTFILES_PATH])
