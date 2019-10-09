@@ -29,7 +29,8 @@ VUNDLE_PATH = os.path.join(VIM_DIRECTORY, 'bundle/Vundle.vim')
 
 DOTFILES_TO_IGNORE = set(['.gitignore', '.git', '.vscode'])
 
-LOCAL_BASH_PROFILE_NAME = '.bash_profile.local'
+LOCAL_BASH_PROFILE_PRE_NAME = '.bash_profile_pre.local'
+LOCAL_BASH_PROFILE_POST_NAME = '.bash_profile_post.local'
 
 def pre_setup():
     if 'OS' in os.environ:
@@ -69,7 +70,8 @@ def setup_dotfiles():
         else:
             logging.info('Found exception creating symlink: %r for file: %s', e, file_name)
 
-    create_local_bash_file()
+    create_local_bash_file(LOCAL_BASH_PROFILE_PRE_NAME)
+    create_local_bash_file(LOCAL_BASH_PROFILE_POST_NAME)
     logging.basicConfig
     logging.info('Dotfiles setup')
     logging.info('Please source dotfiles using source ~/.bash_profile')
@@ -95,13 +97,13 @@ def create_symlink(item_path, target_symlink_path):
     except OSError as e:
         return False
 
-def create_local_bash_file():
+def create_local_bash_file(file_name):
     logging.info('Creating local bash profile...')
-    file_path = os.path.join(FS_DOTFILES_PATH, LOCAL_BASH_PROFILE_NAME)
+    file_path = os.path.join(FS_DOTFILES_PATH, file_name)
     if not os.path.exists(file_path):
         with open(file_path, 'w') as f:
             f.write("# Keep your local machine specific bash settings here. This is not version controlled")
-        target_symlink_path = os.path.join(HOME_DIR, LOCAL_BASH_PROFILE_NAME)
+        target_symlink_path = os.path.join(HOME_DIR, file_name)
         success = create_symlink(file_path, target_symlink_path)
         if not success:
             logging.info('Found exception creating symlink: %r for file: %s', e, file_name)
