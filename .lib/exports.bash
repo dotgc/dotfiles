@@ -49,8 +49,13 @@ function setup_prompt {
         unset GREP_OPTIONS
     else
         #   PS1="[\u@\h] [\w]\n> "
+        local host_name="\h"
+        if [[ ! -z $CANONICAL_HOST_NAME ]]; then
+            host_name=$CANONICAL_HOST_NAME
+        fi
+
+        local host="$GREENBOLD$host_name"
         local user="$REDBOLD\u"
-        local host="$GREENBOLD\h"
         local pwd="$BLUEBOLD\w"
         local openp="$WHITEBOLD("
         local closep="$WHITEBOLD)"
